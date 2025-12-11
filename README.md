@@ -1,6 +1,6 @@
 # 🏥 Vitalis - Clinic Management System
 
-> 🇪🇸 **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
+> **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
 
 ![Java](https://img.shields.io/badge/Java-17%2B-orange)
 ![Database](https://img.shields.io/badge/MySQL-8.0-blue)
@@ -30,23 +30,23 @@ The primary goal of this project is to implement a **Layered Architecture** with
 * **Logging:** SLF4J
 * **Version Control:** Git & GitHub
 
-## 📂 Architecture
+## 📂 Architecture / Arquitectura
 
-The project follows a strict separation of concerns:
+The project follows a strict separation of concerns: 
 
 * **`config`**: Database connection setup (Singleton pattern) and Transaction Manager.
 * **`model`**: Entity classes representing the database tables (Rich Domain Model).
-* **`repository` (DAO)**: Data Access Objects for CRUD operations. *(Coming soon)*
-* **`service`**: Business logic layer. *(Coming soon)*
-* **`controller`**: Application entry point and user interaction. *(Coming soon)*
+* **`dao`**: Data Access Objects for CRUD operations using JDBC.
+* **`service`**: Business logic layer (Validations, calculations).
+* **`main`**: Application entry point and Console User Interface (Menu).
 
 ## ⚙️ Setup & Configuration
 
 To run this project locally, you need to configure the database credentials.
 
 1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/Tonga26/vitalis-clinic-management-system.git](https://github.com/Tonga26/vitalis-clinic-management-system.git)
+    ```
+    git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
     ```
 
 2.  **Database Setup:**
@@ -107,17 +107,17 @@ El proyecto sigue una estricta separación de responsabilidades:
 
 * **`config`**: Configuración de conexión a BD (Patrón Singleton) y Gestor de Transacciones.
 * **`model`**: Clases de Entidad que representan las tablas de la BD (Modelo de Dominio Rico).
-* **`repository` (DAO)**: Objetos de Acceso a Datos para operaciones CRUD. *(Próximamente)*
-* **`service`**: Capa de lógica de negocio. *(Próximamente)*
-* **`controller`**: Punto de entrada de la aplicación e interacción con el usuario. *(Próximamente)*
+* **`dao`**: Objetos de Acceso a Datos para operaciones CRUD utilizando JDBC.
+* **`service`**: Capa de lógica de negocio (Validaciones, reglas).
+* **`main`**: Punto de entrada de la aplicación e interfaz de usuario en consola (Menú).
 
 ## ⚙️ Instalación y Configuración
 
 Para ejecutar este proyecto localmente, necesitas configurar las credenciales de la base de datos.
 
 1.  **Clonar el repositorio:**
-    ```bash
-    git clone [https://github.com/Tonga26/vitalis-clinic-management-system.git](https://github.com/Tonga26/vitalis-clinic-management-system.git)
+    ```
+    git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
     ```
 
 2.  **Configuración de Base de Datos:**
