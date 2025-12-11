@@ -2,7 +2,7 @@
 
 > **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
 
-![Java](https://img.shields.io/badge/Java-17%2B-orange)
+![Java](https://img.shields.io/badge/Java-25-orange)
 ![Database](https://img.shields.io/badge/MySQL-8.0-blue)
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -23,7 +23,7 @@ The primary goal of this project is to implement a **Layered Architecture** with
 
 ## 🛠️ Tech Stack
 
-* **Language:** Java (JDK 17+)
+* **Language:** Java (JDK 25)
 * **Build Tool:** Gradle (Kotlin DSL)
 * **Database:** MySQL
 * **Connectivity:** JDBC API + HikariCP (High-performance JDBC connection pool)
@@ -94,7 +94,7 @@ El objetivo principal de este proyecto es implementar una **Arquitectura en Capa
 
 ## 🛠️ Stack Tecnológico
 
-* **Lenguaje:** Java (JDK 17+)
+* **Lenguaje:** Java (JDK 25)
 * **Build Tool:** Gradle (Kotlin DSL)
 * **Base de Datos:** MySQL
 * **Conectividad:** API JDBC + HikariCP (Pool de conexiones de alto rendimiento)
