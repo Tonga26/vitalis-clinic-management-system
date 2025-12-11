@@ -66,7 +66,7 @@ To run this project locally, you need to configure the database credentials.
         ```
 
 ---
-**Author:** Gastón  
+**Author:** Gastón Giorgio
 *Student of University Technician in Programming at UTN (Universidad Tecnológica Nacional)*
 
 ---
@@ -148,5 +148,5 @@ Para ejecutar este proyecto localmente, necesitas configurar las credenciales de
 - [ ] Migración a Spring Boot (Web App)
 
 ---
-**Autor:** Gastón  
+**Autor:** Gastón Giorgio 
 *Estudiante de Tecnicatura en Programación en la UTN (Universidad Tecnológica Nacional)*
