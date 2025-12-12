@@ -15,8 +15,6 @@ public class Paciente extends EntidadBase {
     private String apellido;
     private String dni;
     private LocalDate fechaNacimiento;
-
-    // Relación 1 a 1: Un paciente tiene una Historia Clínica
     private HistoriaClinica historiaClinica;
 
     /**
