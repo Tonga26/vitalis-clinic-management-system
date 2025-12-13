@@ -4,6 +4,7 @@ import dao.PacienteDao;
 import model.HistoriaClinica;
 import model.Paciente;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,6 +95,57 @@ public class PacienteDaoImpl implements PacienteDao {
     }
 
     @Override
+    public List<Paciente> getAll() throws SQLException {
+        String sql = "SELECT p.*, " +
+                "hc.id AS hc_id, hc.eliminado AS hc_eliminado, hc.nro_historia, " +
+                "hc.grupo_sanguineo, hc.antecedentes, hc.medicacion_actual, " +
+                "hc.observaciones, " +
+                "hc.fecha_apertura AS hc_fecha_apertura " +
+                "FROM paciente p " +
+                "LEFT JOIN historia_clinica hc ON p.id = hc.paciente_id AND hc.eliminado = 0 " +
+                "WHERE p.eliminado = 0";
+
+        List<Paciente> pacientesEncontrados = new ArrayList<>();
+
+        try (PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery()){
+            while (rs.next()){
+                Paciente p = map(rs);
+                pacientesEncontrados.add(p);
+            }
+        }
+        return pacientesEncontrados;
+    }
+
+    @Override
+    public void update(Paciente p) throws SQLException {
+        String sql = "UPDATE paciente SET eliminado=?, dni=?, nombre=?, apellido=?, fecha_nacimiento=? WHERE id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setBoolean(1, p.isEliminado());
+            ps.setString(2, p.getDni());
+            ps.setString(3, p.getNombre());
+            ps.setString(4, p.getApellido());
+            if (p.getFechaNacimiento() != null){
+                ps.setDate(5, java.sql.Date.valueOf(p.getFechaNacimiento()));
+            } else {
+                ps.setNull(5, Types.DATE);
+            }
+            ps.setLong(6, p.getId());
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
+    public void delete(Long id) throws SQLException {
+        String sql = "UPDATE paciente SET eliminado=? WHERE id=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, 1);
+            ps.setLong(2, id);
+            ps.executeUpdate();
+        }
+    }
+
+    @Override
     public Optional<Paciente> findByDni(String dni) throws SQLException {
         String sql = "SELECT p.*, " +
                 "hc.id AS hc_id, hc.eliminado AS hc_eliminado, hc.nro_historia, " +
@@ -113,20 +165,5 @@ public class PacienteDaoImpl implements PacienteDao {
             }
         }
         return Optional.empty();
-    }
-
-    @Override
-    public List<Paciente> getAll() throws SQLException {
-        return List.of();
-    }
-
-    @Override
-    public void update(Paciente paciente) throws SQLException {
-
-    }
-
-    @Override
-    public void delete(Long id) throws SQLException {
-
     }
 }
