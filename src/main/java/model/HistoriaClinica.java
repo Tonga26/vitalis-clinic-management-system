@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Entidad que representa la Historia Clínica de un paciente.
  * <p>
  * Contiene la información médica relevante como el grupo sanguíneo, antecedentes,
- * medicación actual y observaciones. Esta clase es la parte dependiente
+ * medicación actual y observaciones. Esta clase es la parte dependiente (Lado B)
  * de la relación uno a uno con {@link Paciente}.
  * </p>
  */
@@ -27,30 +27,14 @@ public class HistoriaClinica extends EntidadBase {
             this.db = db;
         }
 
-        /**
-         * Obtiene la representación en cadena del grupo sanguíneo para almacenamiento en BD.
-         *
-         * @return El String correspondiente al grupo (ej. "A+").
-         */
         public String db() {
             return db;
         }
 
-        /**
-         * Convierte un String proveniente de la base de datos en su correspondiente Enum.
-         *
-         * @param s El string del grupo sanguíneo (ej. "O-").
-         * @return La constante GrupoSanguineo correspondiente, o null si el input es null.
-         * @throws IllegalArgumentException Si el string no coincide con ningún grupo válido.
-         */
         public static GrupoSanguineo fromDb(String s) {
-            if (s == null) {
-                return null;
-            }
+            if (s == null) return null;
             for (GrupoSanguineo g : values()) {
-                if (g.db.equalsIgnoreCase(s)) {
-                    return g;
-                }
+                if (g.db.equalsIgnoreCase(s)) return g;
             }
             throw new IllegalArgumentException("Grupo sanguíneo inválido: " + s);
         }
@@ -62,29 +46,31 @@ public class HistoriaClinica extends EntidadBase {
     private String medicacionActual;
     private String observaciones;
     private LocalDate fechaApertura;
+
+    // Clave foránea para vincular con el Paciente en la BD
     private Long pacienteId;
 
     /**
      * Constructor por defecto.
+     * Necesario para frameworks y creación paso a paso.
      */
     public HistoriaClinica() {
         super();
     }
 
     /**
-     * Constructor para crear una NUEVA historia clínica (aún no persistida).
+     * Constructor para crear una NUEVA historia clínica (Aún no persistida).
      *
-     * @param nroHistoria      Número único de historia.
-     * @param grupoSanguineo   Grupo sanguíneo (Enum).
-     * @param antecedentes     Antecedentes médicos.
-     * @param medicacionActual Medicación actual.
-     * @param observaciones    Observaciones generales.
-     * @param fechaApertura    Fecha de creación.
-     * @param pacienteId       ID del paciente asociado.
+     * @param nroHistoria      Número de historia (código interno).
+     * @param grupoSanguineo   Grupo sanguíneo del paciente.
+     * @param antecedentes     Antecedentes médicos relevantes.
+     * @param medicacionActual Medicación que toma actualmente.
+     * @param observaciones    Notas adicionales.
+     * @param fechaApertura    Fecha de creación de la ficha.
+     * @param pacienteId       ID del paciente al que pertenece esta historia.
      */
-    public HistoriaClinica(String nroHistoria, GrupoSanguineo grupoSanguineo, String antecedentes,
-                           String medicacionActual, String observaciones, LocalDate fechaApertura, Long pacienteId) {
-        super();
+    public HistoriaClinica(String nroHistoria, GrupoSanguineo grupoSanguineo, String antecedentes, String medicacionActual, String observaciones, LocalDate fechaApertura, Long pacienteId) {
+        // Llama a super() implícitamente -> id=null, eliminado=false
         this.nroHistoria = nroHistoria;
         this.grupoSanguineo = grupoSanguineo;
         this.antecedentes = antecedentes;
@@ -95,21 +81,19 @@ public class HistoriaClinica extends EntidadBase {
     }
 
     /**
-     * Constructor completo para reconstruir objetos desde la base de datos.
+     * Constructor completo para reconstruir desde la Base de Datos.
      *
      * @param id               ID único de la historia.
-     * @param eliminado        Estado de eliminación lógica.
-     * @param nroHistoria      Número único de historia.
+     * @param eliminado        Estado de soft-delete.
+     * @param nroHistoria      Número de historia.
      * @param grupoSanguineo   Grupo sanguíneo.
-     * @param antecedentes     Antecedentes médicos.
-     * @param medicacionActual Medicación actual.
-     * @param observaciones    Observaciones generales.
-     * @param fechaApertura    Fecha de creación.
-     * @param pacienteId       ID del paciente asociado.
+     * @param antecedentes     Antecedentes.
+     * @param medicacionActual Medicación.
+     * @param observaciones    Observaciones.
+     * @param fechaApertura    Fecha de apertura.
+     * @param pacienteId       ID del paciente dueño.
      */
-    public HistoriaClinica(Long id, boolean eliminado, String nroHistoria, GrupoSanguineo grupoSanguineo,
-                           String antecedentes, String medicacionActual, String observaciones,
-                           LocalDate fechaApertura, Long pacienteId) {
+    public HistoriaClinica(Long id, boolean eliminado, String nroHistoria, GrupoSanguineo grupoSanguineo, String antecedentes, String medicacionActual, String observaciones, LocalDate fechaApertura, Long pacienteId) {
         super(id, eliminado);
         this.nroHistoria = nroHistoria;
         this.grupoSanguineo = grupoSanguineo;
@@ -120,127 +104,68 @@ public class HistoriaClinica extends EntidadBase {
         this.pacienteId = pacienteId;
     }
 
-    /**
-     * Obtiene el número único de identificación de la historia clínica.
-     *
-     * @return El número de historia.
-     */
     public String getNroHistoria() {
         return nroHistoria;
     }
 
-    /**
-     * Establece el número único de la historia clínica.
-     *
-     * @param nroHistoria El nuevo número de historia.
-     */
     public void setNroHistoria(String nroHistoria) {
         this.nroHistoria = nroHistoria;
     }
 
-    /**
-     * Obtiene el grupo sanguíneo del paciente.
-     *
-     * @return El grupo sanguíneo.
-     */
     public GrupoSanguineo getGrupoSanguineo() {
         return grupoSanguineo;
     }
 
-    /**
-     * Establece el grupo sanguíneo del paciente.
-     *
-     * @param grupoSanguineo El nuevo grupo sanguíneo.
-     */
     public void setGrupoSanguineo(GrupoSanguineo grupoSanguineo) {
         this.grupoSanguineo = grupoSanguineo;
     }
 
-    /**
-     * Obtiene los antecedentes médicos registrados.
-     *
-     * @return Texto con los antecedentes.
-     */
     public String getAntecedentes() {
         return antecedentes;
     }
 
-    /**
-     * Establece los antecedentes médicos.
-     *
-     * @param antecedentes Texto descriptivo de antecedentes.
-     */
     public void setAntecedentes(String antecedentes) {
         this.antecedentes = antecedentes;
     }
 
-    /**
-     * Obtiene la medicación que el paciente está tomando actualmente.
-     *
-     * @return Texto con la medicación actual.
-     */
     public String getMedicacionActual() {
         return medicacionActual;
     }
 
-    /**
-     * Establece la medicación actual del paciente.
-     *
-     * @param medicacionActual Texto descriptivo de la medicación.
-     */
     public void setMedicacionActual(String medicacionActual) {
         this.medicacionActual = medicacionActual;
     }
 
-    /**
-     * Obtiene las observaciones generales de la historia clínica.
-     *
-     * @return Texto con observaciones.
-     */
     public String getObservaciones() {
         return observaciones;
     }
 
-    /**
-     * Establece observaciones generales adicionales.
-     *
-     * @param observaciones Texto de observaciones.
-     */
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
 
-    /**
-     * Obtiene la fecha en la que se abrió o creó la historia clínica.
-     *
-     * @return La fecha de apertura.
-     */
     public LocalDate getFechaApertura() {
         return fechaApertura;
     }
 
-    /**
-     * Establece la fecha de apertura de la historia clínica.
-     *
-     * @param fechaApertura La nueva fecha de apertura.
-     */
     public void setFechaApertura(LocalDate fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
     /**
-     * Obtiene el ID del paciente propietario de esta historia clínica.
+     * Obtiene el ID del paciente asociado.
+     * Fundamental para la persistencia en base de datos (Foreign Key).
      *
-     * @return El ID del paciente.
+     * @return ID del paciente.
      */
     public Long getPacienteId() {
         return pacienteId;
     }
 
     /**
-     * Establece el ID del paciente propietario.
+     * Establece el ID del paciente asociado.
      *
-     * @param pacienteId El ID del paciente.
+     * @param pacienteId Nuevo ID de paciente.
      */
     public void setPacienteId(Long pacienteId) {
         this.pacienteId = pacienteId;
@@ -248,22 +173,10 @@ public class HistoriaClinica extends EntidadBase {
 
     /**
      * Genera un resumen breve de la Historia Clínica.
-     * Útil para listados compactos o logs.
      *
      * @return Cadena con el número de historia y el grupo sanguíneo.
      */
     public String brief() {
         return "HC{nro='" + nroHistoria + "', grupo=" + (grupoSanguineo != null ? grupoSanguineo.db() : "-") + "}";
-    }
-
-    @Override
-    public String toString() {
-        return "HistoriaClinica{" +
-                "id=" + getId() +
-                ", nroHistoria='" + nroHistoria + '\'' +
-                ", grupo=" + (grupoSanguineo != null ? grupoSanguineo.db() : "null") +
-                ", fechaApertura=" + fechaApertura +
-                ", pacienteId=" + pacienteId +
-                '}';
     }
 }

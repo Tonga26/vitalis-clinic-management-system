@@ -3,10 +3,11 @@ package model;
 import java.time.LocalDate;
 
 /**
- * Representa a un Paciente dentro del sistema Vitalis.
+ * Representa a un Paciente dentro del sistema de gestión.
  * <p>
- * Esta entidad extiende de {@link EntidadBase}, heredando la gestión de ID y borrado lógico.
- * Contiene los datos filiatorios del paciente y mantiene una asociación con su {@link HistoriaClinica}.
+ * Esta entidad actúa como el propietario de la relación uno a uno (1:1) unidireccional
+ * con la clase {@link HistoriaClinica}. Extiende de {@link EntidadBase} para heredar
+ * el identificador y el comportamiento de eliminación lógica.
  * </p>
  */
 public class Paciente extends EntidadBase {
@@ -19,48 +20,62 @@ public class Paciente extends EntidadBase {
 
     /**
      * Constructor por defecto.
-     * Inicializa una instancia vacía, útil para frameworks y asignación manual de propiedades.
+     * Inicializa una instancia de Paciente lista para ser utilizada.
+     * Necesario para frameworks y creación paso a paso.
      */
     public Paciente() {
         super();
     }
 
     /**
-     * Constructor para crear un NUEVO paciente (aún no persistido en la BD).
-     * El ID será null hasta que se guarde.
+     * Constructor para crear un NUEVO paciente (Aún no persistido).
+     * <p>
+     * Se utiliza cuando el usuario ingresa los datos por primera vez.
+     * El ID se inicializa en null y 'eliminado' en false.
+     * </p>
      *
-     * @param nombre          Nombre(s) del paciente.
-     * @param apellido        Apellido(s) del paciente.
-     * @param dni             Documento Nacional de Identidad (único).
+     * @param nombre          Nombre de pila.
+     * @param apellido        Apellido.
+     * @param dni             Documento único.
      * @param fechaNacimiento Fecha de nacimiento.
+     * @param historiaClinica La historia clínica asociada (puede ser null inicialmente).
      */
-    public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento) {
-        super();
+    public Paciente(String nombre, String apellido, String dni, LocalDate fechaNacimiento, HistoriaClinica historiaClinica) {
+        // Llama implícitamente a super() -> id=null, eliminado=false
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaNacimiento = fechaNacimiento;
+        this.historiaClinica = historiaClinica;
     }
 
     /**
-     * Constructor completo para reconstruir un paciente DESDE la base de datos.
+     * Constructor completo para reconstruir un paciente EXISTENTE desde la Base de Datos.
+     * <p>
+     * Este constructor debe ser usado únicamente por la capa DAO (Data Access Object)
+     * al mapear un ResultSet SQL a un objeto Java.
+     * </p>
      *
-     * @param id              Identificador único recuperado de la BD.
-     * @param eliminado       Estado de eliminación lógica recuperado de la BD.
-     * @param nombre          Nombre(s) del paciente.
-     * @param apellido        Apellido(s) del paciente.
-     * @param dni             DNI del paciente.
+     * @param id              El ID recuperado de la BD.
+     * @param eliminado       El estado soft-delete recuperado de la BD.
+     * @param nombre          Nombre de pila.
+     * @param apellido        Apellido.
+     * @param dni             Documento único.
      * @param fechaNacimiento Fecha de nacimiento.
+     * @param historiaClinica La historia clínica asociada (o null si se carga perezosamente).
      */
-    public Paciente(Long id, boolean eliminado, String nombre, String apellido, String dni, LocalDate fechaNacimiento) {
-        super(id, eliminado);
+    public Paciente(Long id, boolean eliminado, String nombre, String apellido, String dni, LocalDate fechaNacimiento, HistoriaClinica historiaClinica) {
+        super(id, eliminado); // Pasa los datos de control al padre
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.fechaNacimiento = fechaNacimiento;
+        this.historiaClinica = historiaClinica;
     }
 
     /**
+     * Obtiene el nombre de pila del paciente.
+     *
      * @return El nombre del paciente.
      */
     public String getNombre() {
@@ -68,13 +83,17 @@ public class Paciente extends EntidadBase {
     }
 
     /**
-     * @param nombre El nombre a establecer.
+     * Establece el nombre de pila del paciente.
+     *
+     * @param nombre El nuevo nombre.
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
+     * Obtiene el apellido del paciente.
+     *
      * @return El apellido del paciente.
      */
     public String getApellido() {
@@ -82,13 +101,17 @@ public class Paciente extends EntidadBase {
     }
 
     /**
-     * @param apellido El apellido a establecer.
+     * Establece el apellido del paciente.
+     *
+     * @param apellido El nuevo apellido.
      */
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
     /**
+     * Obtiene el Documento Nacional de Identidad (DNI).
+     *
      * @return El DNI del paciente.
      */
     public String getDni() {
@@ -96,13 +119,17 @@ public class Paciente extends EntidadBase {
     }
 
     /**
-     * @param dni El DNI a establecer.
+     * Establece el Documento Nacional de Identidad (DNI).
+     *
+     * @param dni El nuevo DNI.
      */
     public void setDni(String dni) {
         this.dni = dni;
     }
 
     /**
+     * Obtiene la fecha de nacimiento del paciente.
+     *
      * @return La fecha de nacimiento.
      */
     public LocalDate getFechaNacimiento() {
@@ -110,17 +137,18 @@ public class Paciente extends EntidadBase {
     }
 
     /**
-     * @param fechaNacimiento La fecha de nacimiento a establecer.
+     * Establece la fecha de nacimiento del paciente.
+     *
+     * @param fechaNacimiento La nueva fecha de nacimiento.
      */
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
     /**
-     * Obtiene el objeto de Historia Clínica asociado.
-     * Nota: Puede ser null si no se ha cargado explícitamente desde la BD (Lazy Loading).
+     * Obtiene la Historia Clínica asociada a este paciente.
      *
-     * @return La historia clínica o null.
+     * @return La Historia Clínica, o null si no tiene una asignada.
      */
     public HistoriaClinica getHistoriaClinica() {
         return historiaClinica;
@@ -128,27 +156,23 @@ public class Paciente extends EntidadBase {
 
     /**
      * Asocia una Historia Clínica a este paciente.
+     * Representa la relación unidireccional donde el Paciente conoce a su Historia Clínica.
      *
-     * @param historiaClinica El objeto HistoriaClinica a asociar.
+     * @param historiaClinica La Historia Clínica a asociar.
      */
     public void setHistoriaClinica(HistoriaClinica historiaClinica) {
         this.historiaClinica = historiaClinica;
     }
 
     /**
-     * Representación en String del objeto.
-     * Incluye una llamada a un método 'brief()' de HistoriaClinica para no generar ciclos infinitos.
+     * Genera una representación en cadena del objeto Paciente.
+     * Incluye identificadores, datos personales y un resumen breve de la historia clínica.
+     *
+     * @return Cadena descriptiva del paciente.
      */
     @Override
     public String toString() {
-        String historiaInfo = (historiaClinica != null) ? historiaClinica.toString() : "null";
-
-        return "Paciente{" +
-                "id=" + getId() +
-                ", dni='" + dni + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", hc=" + historiaInfo +
-                '}';
+        return "Paciente{id=" + getId() + ", dni='" + dni + "', nombre='" + nombre + "', apellido='" + apellido
+                + "', hc=" + (historiaClinica != null ? historiaClinica.brief() : "null") + "}";
     }
 }
