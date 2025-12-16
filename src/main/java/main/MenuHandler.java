@@ -6,8 +6,10 @@ import service.HistoriaClinicaService;
 import service.PacienteService;
 import model.HistoriaClinica.GrupoSanguineo;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuHandler {
@@ -102,10 +104,45 @@ public class MenuHandler {
         }
     }
 
+    public void  findPatientByDni() {
+        try {
+            System.out.println("\n=== BUSCAR PACIENTE ===");
+            String dni = readInput("Ingrese el dni del paciente a buscar: ");
+
+            Optional<Paciente> posiblePaciente = pacienteService.findByDni(dni);
+
+            if (posiblePaciente.isPresent()) {
+                Paciente p = posiblePaciente.get();
+                printPatientDetails(p);
+            } else {
+                System.out.println("⚠ No se encontró nadie con DNI: " + dni);
+            }
+        } catch (Exception e){
+            MenuDisplay.printError("Error al buscar en la base de datos: " + e.getMessage());
+        }
+    }
+
     private String readInput(String mensaje) {
         System.out.print(mensaje);
         String texto = scanner.nextLine();
         return texto.trim();
+    }
+
+    private void printPatientDetails(Paciente p) {
+        String nroHc = (p.getHistoriaClinica() != null ? p.getHistoriaClinica().getNroHistoria() : "S/D");
+        String grupo = (p.getHistoriaClinica() != null && p.getHistoriaClinica().getGrupoSanguineo() != null
+                ? p.getHistoriaClinica().getGrupoSanguineo().db() : "-");
+
+        System.out.println("=".repeat(40) + "\n" + " DATOS DEL PACIENTE\n" + "=".repeat(40));
+        System.out.println("ID: " + p.getId());
+        System.out.println("Dni: " + p.getDni());;
+        System.out.println("Nombre: " + p.getNombre());
+        System.out.println("Apellido: " + p.getApellido());
+        System.out.println("-".repeat(40));
+        System.out.println("HISTORIA CLÍNICA \n");
+        System.out.println("Número: " + nroHc);
+        System.out.println(" Grupo sanguíneo: " + grupo);
+        System.out.println("=".repeat(40));
     }
 
 }
