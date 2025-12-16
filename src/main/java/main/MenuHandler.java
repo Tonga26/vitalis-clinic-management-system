@@ -55,7 +55,7 @@ public class MenuHandler {
 
             pacienteService.create(p);
 
-            MenuDisplay.printSuccess("Paciente " + p.getNombre() + p.getApellido() + " " + " guardado con ID: " + p.getId());
+            MenuDisplay.printSuccess("Paciente " + p.getNombre() + " " + p.getApellido() + " guardado con ID: " + p.getId());
         } catch (java.time.format.DateTimeParseException e) {
             MenuDisplay.printError("El formato de la fecha es incorrecto. Debe ser YYYY-MM-DD (ej: 1990-12-31)");
         } catch (IllegalArgumentException e) {
