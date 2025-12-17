@@ -6,7 +6,6 @@ import service.HistoriaClinicaService;
 import service.PacienteService;
 import model.HistoriaClinica.GrupoSanguineo;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -164,6 +163,116 @@ public class MenuHandler {
             MenuDisplay.printError("El ID debe ser un número válido.");
         } catch (Exception e) {
             MenuDisplay.printError("Error al actualizar paciente: " + e.getMessage());
+        }
+    }
+
+    public void updateClinicalHistory(){
+        try {
+            String idStr = readInput("Ingrese el ID del Paciente cuya Historia Clínica desea actualizar: ");
+            Long pacienteID = Long.parseLong(idStr);
+
+            Optional<Paciente> opt = pacienteService.findById(pacienteID);
+
+            if (opt.isEmpty()) {
+                System.out.println("No se encontró un Paciente con ese ID.");
+                return;
+            }
+            if (opt.get().getHistoriaClinica() == null) {
+                System.out.println("Este paciente no tiene Historia Clínica asociada.");
+                return;
+            }
+
+            Paciente p = opt.get();
+            System.out.println("\n════════ EDITANDO HISTORIA CLÍNICA ════════\n");
+            System.out.println("(Deje vacío y presione ENTER para mantener el valor actual)\n");
+
+            String nroHistoria = readInput("Nuevo número de historia [" + p.getHistoriaClinica().getNroHistoria() + "]: ");
+            if (!nroHistoria.isBlank()) p.getHistoriaClinica().setNroHistoria(nroHistoria);
+
+            System.out.print("Valores permitidos: ");
+            for (GrupoSanguineo g : GrupoSanguineo.values()) {
+                System.out.print(g.db() + " ");
+            }
+            System.out.println();
+            GrupoSanguineo currentGrupo = p.getHistoriaClinica().getGrupoSanguineo();
+            String displayGrupo = (currentGrupo != null) ? currentGrupo.db() : "Sin Asignar";
+            String grupoTexto = readInput("Nuevo grupo sanguíneo [" + displayGrupo + "]: ");
+            if (!grupoTexto.isBlank()) {
+                try {
+                    GrupoSanguineo gs = GrupoSanguineo.fromDb(grupoTexto);
+                    p.getHistoriaClinica().setGrupoSanguineo(gs);
+                } catch (IllegalArgumentException e){
+                    System.out.println("❌ Grupo no válido. Se conserva el valor anterior.");
+                }
+            }
+
+            String ant = readInput("Nuevos antecedentes (opcional): ");
+            if (!ant.isBlank()) p.getHistoriaClinica().setAntecedentes(ant);
+
+            String med = readInput("Nueva medicación actual (opcional): ");
+            if (!med.isBlank()) p.getHistoriaClinica().setMedicacionActual(med);
+
+            String obs = readInput("Nuevas observaciones (opcional): ");
+            if (!obs.isBlank()) p.getHistoriaClinica().setObservaciones(obs);
+
+            if (p.getHistoriaClinica() != null) {
+                hcService.update(p.getHistoriaClinica());
+            }
+            System.out.println("\n✅ ¡Historia clinica actualizada con éxito!");
+        } catch (NumberFormatException e) {
+            MenuDisplay.printError("El ID debe ser un número válido.");
+        } catch (Exception e) {
+            MenuDisplay.printError("Error al actualizar la historia clínica: " + e.getMessage());
+        }
+    }
+
+    public void listClinicalHistories() {
+        try {
+            System.out.println("\n=== LISTADO COMPLETO DE HISTORIAS CLÍNICAS ===");
+
+            List<HistoriaClinica> historias = hcService.getAll();
+
+            if (historias.isEmpty()) {
+                System.out.println("⚠ No hay historias clínicas registradas.");
+                return;
+            }
+
+            for (HistoriaClinica hc : historias) {
+                String nombrePaciente = "Desconocido";
+                String dniPaciente = "S/D";
+
+                if (hc.getPacienteId() != null) {
+                    Optional<Paciente> optP = pacienteService.findById(hc.getPacienteId());
+                    if (optP.isPresent()) {
+                        Paciente p = optP.get();
+                        nombrePaciente = p.getApellido().toUpperCase() + ", " + p.getNombre();
+                        dniPaciente = p.getDni();
+                    }
+                }
+
+                String grupo = (hc.getGrupoSanguineo() != null) ? hc.getGrupoSanguineo().db() : "S/D";
+                String ant   = (hc.getAntecedentes() != null && !hc.getAntecedentes().isBlank()) ? hc.getAntecedentes() : "Sin antecedentes";
+                String med   = (hc.getMedicacionActual() != null && !hc.getMedicacionActual().isBlank()) ? hc.getMedicacionActual() : "Ninguna";
+                String obs   = (hc.getObservaciones() != null && !hc.getObservaciones().isBlank()) ? hc.getObservaciones() : "-";
+
+                System.out.println("──────────────────────────────────────────────────────────");
+                System.out.printf("👤 PACIENTE: %-30s | 🆔 DNI: %s%n", nombrePaciente, dniPaciente);
+                System.out.println("   - - - - - - - - - - - - - - - - - - - - - - - - - - -");
+
+                System.out.printf("📄 Nro HC: %-10s | 🩸 Grupo: %s | 🆔 ID HC: %d%n",
+                        hc.getNroHistoria(), grupo, hc.getId());
+
+                System.out.println("📋 Antecedentes: " + ant);
+                System.out.println("💊 Medicación:   " + med);
+
+                if (!obs.equals("-")) {
+                    System.out.println("📝 Observaciones: " + obs);
+                }
+            }
+            System.out.println("──────────────────────────────────────────────────────────");
+
+        } catch (Exception e) {
+            MenuDisplay.printError("Error al listar historias: " + e.getMessage());
         }
     }
 

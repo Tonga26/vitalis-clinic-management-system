@@ -37,7 +37,7 @@ public class MenuDisplay {
      */
     public static void printError(String msg) {
         System.err.println(" ❌ ERROR: " + msg);
-        System.out.println("--------------------------------------------------");
+        System.out.println("-".repeat(60));
     }
 
     /**
@@ -46,6 +46,6 @@ public class MenuDisplay {
      */
     public static void printSuccess(String msg) {
         System.out.println(" ✅ " + msg);
-        System.out.println("--------------------------------------------------");
+        System.out.println("-".repeat(60));
     }
 }

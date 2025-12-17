@@ -38,6 +38,12 @@ public class AppMenu {
                     case 4:
                         menuHandler.updatePatient();
                         break;
+                    case 5:
+                        menuHandler.updateClinicalHistory();
+                        break;
+                    case 6:
+                        menuHandler.listClinicalHistories();
+                        break;
                     case 7:
                         menuHandler.deletePatient();
                         break;
