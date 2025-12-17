@@ -54,18 +54,25 @@ The project follows a strict separation of concerns: 
 To run the JDBC Console version locally:
 
 1.  **Clone the repository:**
+
     ```
     git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
     ```
 
 2.  **Database Setup:**
+
     * Create a MySQL database named `vitalis_db`.
+    
     * Run the SQL scripts located in the `/sql` folder to create the tables.
 
 3.  **Environment Variables:**
+
     * Locate the file `src/main/resources/db_example.properties`.
+    
     * Create a copy named `db.properties` (this file is ignored by Git for security).
+    
     * Fill in your actual MySQL credentials:
+    
         ```
         db.url=jdbc:mysql://localhost:3306/vitalis_db
         db.user=YOUR_USERNAME
@@ -134,19 +141,26 @@ El proyecto sigue una estricta separación de responsabilidades:
 Para ejecutar la versión JDBC localmente:
 
 1.  **Clonar el repositorio:**
-    ```bash
-    git clone [https://github.com/Tonga26/vitalis-clinic-management-system.git](https://github.com/Tonga26/vitalis-clinic-management-system.git)
+
+    ```
+    git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
     ```
 
 2.  **Configuración de Base de Datos:**
+
     * Crear una base de datos MySQL llamada `vitalis_db`.
+    
     * Ejecutar los scripts SQL ubicados en la carpeta `/sql` para crear las tablas.
 
 3.  **Variables de Entorno:**
+
     * Ubicar el archivo `src/main/resources/db_example.properties`.
+    
     * Crear una copia llamada `db.properties` (este archivo es ignorado por Git por seguridad).
+    
     * Completar con tus credenciales reales de MySQL:
-        ```properties
+    
+        ```
         db.url=jdbc:mysql://localhost:3306/vitalis_db
         db.user=TU_USUARIO
         db.password=TU_CONTRASEÑA
