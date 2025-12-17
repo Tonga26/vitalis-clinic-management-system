@@ -73,18 +73,13 @@ To run the JDBC Console version locally:
     
     * Fill in your actual MySQL credentials:
     
-        ```
-        db.url=jdbc:mysql://localhost:3306/vitalis_db
-        
-        db.user=YOUR_USERNAME
-        
-        db.password=YOUR_PASSWORD
-       
-        db.cant_max_con=10
-        
-        db.cant_min_con=5
-        ```
-
+     ```
+     db.url=jdbc:mysql//localhost:3306/vitalis_db
+     db.user=YOUR_USERNAME
+     db.password=YOUR_PASSWORD
+     db.cant_max_con=10
+     db.cant_min_con=5
+     ```
 ---
 **Author:** Gastón Giorgio
 *Student of University Technician in Programming at UTN (Universidad Tecnológica Nacional)*
@@ -166,8 +161,8 @@ Para ejecutar la versión JDBC localmente:
     
      ```
      db.url=jdbc:mysql://localhost:3306/vitalis_db
-     db.user=YOUR_USERNAME
-     db.password=YOUR_PASSWORD
+     db.user=TU_USUARIO
+     db.password=TU_PASSWORD
      db.cant_max_con=10
      db.cant_min_con=5
      ```
