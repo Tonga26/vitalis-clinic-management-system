@@ -1,3 +1,5 @@
+🚀 New Version Available: Check out the modern Full-Stack version of this project built with Spring Boot and React here: https://github.com/Tonga26/vitalis-platform
+
 # 🏥 Vitalis - Clinic Management System
 
 > **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
