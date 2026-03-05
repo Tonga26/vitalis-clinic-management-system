@@ -1,4 +1,4 @@
-🚀 New Version Available: Check out the modern Full-Stack version of this project built with Spring Boot and React here: https://github.com/Tonga26/vitalis-platform
+🚧 Work in Progress: I am currently expanding my skills by migrating this core JDBC application into a modern Full-Stack architecture (Spring Boot + React). Stay tuned for the new repository!
 
 # 🏥 Vitalis - Clinic Management System
 
@@ -76,7 +76,7 @@ To run the JDBC Console version locally:
     * Fill in your actual MySQL credentials:
     
      ```
-     db.url=jdbc:mysql//localhost:3306/vitalis_db
+     db.url=jdbc:mysql://localhost:3306/vitalis_db
      db.user=YOUR_USERNAME
      db.password=YOUR_PASSWORD
      db.cant_max_con=10
@@ -87,6 +87,7 @@ To run the JDBC Console version locally:
 *Student of University Technician in Programming at UTN (Universidad Tecnológica Nacional)*
 
 ---
+🚧 En Desarrollo: Actualmente estoy ampliando mis conocimientos para migrar esta aplicación JDBC a una arquitectura Full-Stack moderna (Spring Boot + React). ¡Pronto publicaré el nuevo repositorio!
 
 # 🏥 Vitalis - Sistema de Gestión de Clínicas (Versión en Español)
 
