@@ -1,3 +1,16 @@
+🚧 Work in Progress: I am currently expanding my skills by migrating this core JDBC application into a modern Full-Stack architecture (Spring Boot + React). Stay tuned for the new repository!
+
+# 🏥 Vitalis - Clinic Management System
+
+> **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
+
+![Java](https://img.shields.io/badge/Java-21%2B-orange)
+![Database](https://img.shields.io/badge/MySQL-8.0-blue)
+![Status](https://img.shields.io/badge/Status-JDBC%20Phase%20Completed-success)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+> **Current Status:** The Core JDBC Console Application is **Complete**. The project is now transitioning to **Phase 2: Web Migration**. 🚀
+
 ## 🚀 Key Features
 
 - Backend application built with **Java + JDBC** following a layered architecture (DAO, Service, Model)
@@ -14,19 +27,6 @@
 - How connection pooling improves performance
 - How to design scalable backend architectures
 - Differences between JDBC and ORM approaches (JPA/Hibernate)
-
-🚧 Work in Progress: I am currently expanding my skills by migrating this core JDBC application into a modern Full-Stack architecture (Spring Boot + React). Stay tuned for the new repository!
-
-# 🏥 Vitalis - Clinic Management System
-
-> **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
-
-![Java](https://img.shields.io/badge/Java-21%2B-orange)
-![Database](https://img.shields.io/badge/MySQL-8.0-blue)
-![Status](https://img.shields.io/badge/Status-JDBC%20Phase%20Completed-success)
-![License](https://img.shields.io/badge/License-MIT-green)
-
-> **Current Status:** The Core JDBC Console Application is **Complete**. The project is now transitioning to **Phase 2: Web Migration**. 🚀
 
 ## 📖 About the Project
 
@@ -104,6 +104,17 @@ To run the JDBC Console version locally:
 *Student of University Technician in Programming at UTN (Universidad Tecnológica Nacional)*
 
 ---
+🚧 En Desarrollo: Actualmente estoy ampliando mis conocimientos para migrar esta aplicación JDBC a una arquitectura Full-Stack moderna (Spring Boot + React). ¡Pronto publicaré el nuevo repositorio!
+
+# 🏥 Vitalis - Sistema de Gestión de Clínicas (Versión en Español)
+
+![Java](https://img.shields.io/badge/Java-21%2B-orange)
+![Database](https://img.shields.io/badge/MySQL-8.0-blue)
+![Estado](https://img.shields.io/badge/Estado-Fase%20JDBC%20Completada-success)
+![Licencia](https://img.shields.io/badge/Licencia-MIT-green)
+
+> **Estado Actual:** La aplicación de consola JDBC está **Finalizada**. El proyecto está transicionando a la **Fase 2: Migración Web**. 🚀
+
 ## 🚀 Características Principales
 
 - Aplicación backend desarrollada con **Java + JDBC** siguiendo una arquitectura en capas (DAO, Service, Model)
@@ -120,17 +131,6 @@ To run the JDBC Console version locally:
 - Cómo el uso de connection pooling mejora el rendimiento
 - Cómo diseñar arquitecturas backend escalables
 - Diferencias entre JDBC y el uso de ORM (JPA/Hibernate)
-
-🚧 En Desarrollo: Actualmente estoy ampliando mis conocimientos para migrar esta aplicación JDBC a una arquitectura Full-Stack moderna (Spring Boot + React). ¡Pronto publicaré el nuevo repositorio!
-
-# 🏥 Vitalis - Sistema de Gestión de Clínicas (Versión en Español)
-
-![Java](https://img.shields.io/badge/Java-21%2B-orange)
-![Database](https://img.shields.io/badge/MySQL-8.0-blue)
-![Estado](https://img.shields.io/badge/Estado-Fase%20JDBC%20Completada-success)
-![Licencia](https://img.shields.io/badge/Licencia-MIT-green)
-
-> **Estado Actual:** La aplicación de consola JDBC está **Finalizada**. El proyecto está transicionando a la **Fase 2: Migración Web**. 🚀
 
 ## 📖 Sobre el Proyecto
 
