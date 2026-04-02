@@ -1,3 +1,20 @@
+## 🚀 Key Features
+
+- Backend application built with **Java + JDBC** following a layered architecture (DAO, Service, Model)
+- Manual implementation of **transaction management (ACID properties)**
+- Optimized database access using **HikariCP connection pooling**
+- Clean separation of concerns using **MVC pattern**
+- Designed for scalability and migration to **Spring Boot REST API**
+
+👉 This project demonstrates strong backend fundamentals without relying on high-level frameworks.
+
+## 🧠 What I Learned
+
+- How to manage database transactions manually
+- How connection pooling improves performance
+- How to design scalable backend architectures
+- Differences between JDBC and ORM approaches (JPA/Hibernate)
+
 🚧 Work in Progress: I am currently expanding my skills by migrating this core JDBC application into a modern Full-Stack architecture (Spring Boot + React). Stay tuned for the new repository!
 
 # 🏥 Vitalis - Clinic Management System
@@ -23,7 +40,7 @@ The primary goal of the first phase was to implement a **Layered Architecture** 
 - **OOP Principles** (Inheritance, Polymorphism, Encapsulation) and **DAO Pattern**.
 
 **Phase 2 (In Progress):**
-We are now migrating this monolithic console application to a modern **Full Stack Web Application**.
+I am now migrating this monolithic console application to a modern **Full Stack Web Application**.
 - **Backend:** Migrating logic to **Spring Boot** (REST API).
 - **Frontend:** Building a reactive user interface with **React**.
 
@@ -87,6 +104,23 @@ To run the JDBC Console version locally:
 *Student of University Technician in Programming at UTN (Universidad Tecnológica Nacional)*
 
 ---
+## 🚀 Características Principales
+
+- Aplicación backend desarrollada con **Java + JDBC** siguiendo una arquitectura en capas (DAO, Service, Model)
+- Implementación manual del **manejo de transacciones (propiedades ACID)**
+- Acceso a base de datos optimizado mediante **pool de conexiones HikariCP**
+- Separación clara de responsabilidades utilizando el **patrón MVC**
+- Diseñado para ser escalable y migrar a una **API REST con Spring Boot**
+
+👉 Este proyecto demuestra una base sólida en desarrollo backend sin depender de frameworks de alto nivel.
+
+## 🧠 Lo que aprendí
+
+- Cómo gestionar transacciones de base de datos de forma manual
+- Cómo el uso de connection pooling mejora el rendimiento
+- Cómo diseñar arquitecturas backend escalables
+- Diferencias entre JDBC y el uso de ORM (JPA/Hibernate)
+
 🚧 En Desarrollo: Actualmente estoy ampliando mis conocimientos para migrar esta aplicación JDBC a una arquitectura Full-Stack moderna (Spring Boot + React). ¡Pronto publicaré el nuevo repositorio!
 
 # 🏥 Vitalis - Sistema de Gestión de Clínicas (Versión en Español)
@@ -110,7 +144,7 @@ El objetivo principal fue implementar una **Arquitectura en Capas** sin depender
 - **Patrón DAO** y principios sólidos de POO.
 
 **Fase 2 (En Progreso):**
-Actualmente estamos migrando esta aplicación monolítica de consola a una **Aplicación Web Full Stack**.
+Actualmente estoy migrando esta aplicación monolítica de consola a una **Aplicación Web Full Stack**.
 - **Backend:** Migración de la lógica a **Spring Boot** (REST API).
 - **Frontend:** Desarrollo de una interfaz moderna con **React**.
 
