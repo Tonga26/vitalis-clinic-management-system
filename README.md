@@ -1,5 +1,3 @@
-🚧 Work in Progress: I am currently expanding my skills by migrating this core JDBC application into a modern Full-Stack architecture (Spring Boot + React). Stay tuned for the new repository!
-
 # 🏥 Vitalis - Clinic Management System
 
 > **Español:** Para leer la versión en español, baja hasta la sección "Versión en Español".
@@ -75,7 +73,7 @@ To run the JDBC Console version locally:
 1.  **Clone the repository:**
 
     ```
-    git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
+    git clone https://github.com/gastongiorgio/vitalis-clinic-management-system.git
     ```
 
 2.  **Database Setup:**
@@ -179,7 +177,7 @@ Para ejecutar la versión JDBC localmente:
 1.  **Clonar el repositorio:**
 
     ```
-    git clone https://github.com/Tonga26/vitalis-clinic-management-system.git
+    git clone https://github.com/gastongiorgio/vitalis-clinic-management-system.git
     ```
 
 2.  **Configuración de Base de Datos:**
@@ -208,8 +206,6 @@ Para ejecutar la versión JDBC localmente:
 *Estudiante de la Tecnicatura en Programación en la Universidad Tecnológica Nacional (UTN)*
 
 ## 📝 Progreso / Roadmap
-
-### Phase 1: JDBC Console App (Completed)
 - [x] Inicialización del Proyecto y Configuración de Gradle
 - [x] Configuración de Base de Datos con HikariCP
 - [x] Implementación del Transaction Manager (ACID)
@@ -218,9 +214,3 @@ Para ejecutar la versión JDBC localmente:
 - [x] Implementar Capa Service (Lógica de Negocio)
 - [x] Interfaz de Usuario en Consola (Menu System)
 
-### Phase 2: Spring Boot & React Migration (Upcoming)
-- [ ] Inicializar proyecto Spring Boot
-- [ ] Migrar lógica de JDBC a Spring Data JPA
-- [ ] Crear controladores REST (API Endpoints)
-- [ ] Configurar React y crear componentes visuales
-- [ ] Integrar Backend y Frontend
